@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How to Play Football</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #eef2f3;
+}
+
+header {
+    background: #111;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h2 {
+    color: #222;
+    margin-top: 30px;
+}
+
+.players {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.players img {
+    width: 180px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+}
+
+.product.recommended {
+    border: 3px solid gold;
+}
+
+.product img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: gold;
+    color: black;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    background: green;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+select {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚽ Complete Guide: How to Play Football</h1>
+</header>
+
+<div class="container">
+
+<h2>Introduction</h2>
+<p>
+Football, also known as soccer, is the most popular sport in the world, played by millions of people across every continent.
+It is a fast-paced and exciting game that requires teamwork, skill, strategy, and fitness. The objective is simple: score
+more goals than your opponent within 90 minutes.
+</p>
+
+<p>
+Football can be played casually with friends or professionally in massive stadiums. It teaches discipline, teamwork,
+and physical endurance. Whether you're a beginner or looking to improve, learning the basics is essential.
+</p>
+
+<h2>Rules of the Game</h2>
+<p>
+Each match is played between two teams of 11 players. One player is the goalkeeper, who is the only player allowed to
+use their hands within the penalty area. The rest of the players must use their feet, head, or body to control the ball.
+</p>
+
+<ul>
+<li>The game lasts 90 minutes (two halves of 45 minutes)</li>
+<li>The team with the most goals wins</li>
+<li>Offside rules prevent unfair positioning</li>
+<li>Fouls result in free kicks or penalties</li>
+</ul>
+
+<h2>Essential Skills</h2>
+<p>
+To become a good football player, you need to develop several key skills:
+</p>
+
+<ul>
+<li><strong>Dribbling:</strong> Controlling the ball while moving</li>
+<li><strong>Passing:</strong> Accurately giving the ball to teammates</li>
+<li><strong>Shooting:</strong> Scoring goals with precision</li>
+<li><strong>Defending:</strong> Stopping the opponent</li>
+<li><strong>Positioning:</strong> Being in the right place at the right time</li>
+</ul>
+
+<h2>Famous Players</h2>
+<div class="players">
+    <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg">
+        <p>Cristiano Ronaldo</p>
+    </div>
+    <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Lionel_Messi_20180626.jpg">
+        <p>Lionel Messi</p>
+    </div>
+    <div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Neymar_2018.jpg">
+        <p>Neymar</p>
+    </div>
+</div>
+
+<h2>Training Tips</h2>
+<p>
+To improve your football skills, practice regularly. Train your dribbling by weaving through cones, practice passing
+with a friend, and improve your shooting accuracy by aiming at specific targets in the goal.
+</p>
+
+<p>
+Fitness is also important. Running, sprinting, and strength exercises will help you perform better on the field.
+Watching professional matches can also help you understand tactics and positioning.
+</p>
+
+<h2>Recommended Football Gear (eBay Style)</h2>
+
+<select onchange="sortItems(this.value)">
+    <option value="default">Sort by</option>
+    <option value="price">Price (Low to High)</option>
+</select>
+
+<div class="products" id="products"></div>
+
+</div>
+
+<script>
+let items = [
+    {name: "Professional Football", price: 20, img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Soccerball.svg", recommended: true},
+    {name: "Football Boots (Nike Style)", price: 75, img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Football_boots.jpg", recommended: true},
+    {name: "Shin Guards", price: 15, img: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Shin_guard.jpg"},
+    {name: "Training Cones Set", price: 25, img: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Training_cones.jpg"},
+    {name: "Football Jersey", price: 40, img: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Football_jersey.jpg"},
+    {name: "Goalkeeper Gloves", price: 30, img: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Goalkeeper_gloves.jpg", recommended: true},
+    {name: "Mini Goal Net", price: 50, img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Football_goal.jpg"}
+];
+
+function displayItems(list) {
+    const container = document.getElementById("products");
+    container.innerHTML = "";
+
+    list.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "product";
+
+        if(item.recommended){
+            div.classList.add("recommended");
+        }
+
+        div.innerHTML = `
+            ${item.recommended ? '<div class="badge">Recommended</div>' : ''}
+            <img src="${item.img}">
+            <h3>${item.name}</h3>
+            <p>$${item.price}</p>
+            <button onclick="buyItem('${item.name}')">View on eBay</button>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function sortItems(type){
+    if(type === "price"){
+        items.sort((a,b)=>a.price - b.price);
+    }
+    displayItems(items);
+}
+
+function buyItem(name){
+    alert("Redirecting to eBay for: " + name);
+}
+
+displayItems(items);
+</script>
+
+</body>
+</html>
